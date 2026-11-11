@@ -1,153 +1,277 @@
-# 🎮 Juego de 3 en Raya Moderno
+# 3 en Raya (Tres en Línea)
 
-Un juego de tres en raya (tic-tac-toe) moderno y elegante con interfaz web, diseñado con CSS avanzado y JavaScript vanilla. Incluye modo jugador vs jugador y jugador vs IA con diferentes niveles de dificultad.
+[Español](#español) · [English](#english)
 
+---
 
-## ✨ Características
+## Español
 
-### 🎯 Modos de Juego
-- **👥 Jugador vs Jugador**: Modo clásico para dos personas
-- **🤖 Jugador vs IA**: Enfréntate a la inteligencia artificial
+### Índice
 
-### 🧠 Inteligencia Artificial
-- **🟢 Nivel Fácil**: Movimientos aleatorios, perfecto para principiantes
-- **🟡 Nivel Medio**: Estrategia básica con ocasionales movimientos subóptimos
-- **🔴 Nivel Difícil**: IA estratégica que prioriza ganar, bloquear y posiciones clave
+- [Descripción](#descripción)
+- [Características](#características)
+- [Cómo jugar](#cómo-jugar)
+- [Niveles de la IA](#niveles-de-la-ia)
+- [Instalación](#instalación)
+- [Personalización](#personalización)
+- [Compatibilidad](#compatibilidad)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Cómo funciona](#cómo-funciona)
+- [Licencia](#licencia)
 
-### 🎨 Interfaz Moderna
-- **Diseño Glassmorphism**: Efectos de cristal esmerilado
-- **Gradientes Vibrantes**: Colores modernos y atractivos
-- **Animaciones Fluidas**: Transiciones suaves en hover y clicks
-- **Efectos Especiales**: Confeti al ganar y resaltado de línea ganadora
-- **Responsive Design**: Se adapta a móviles y escritorio
+### Descripción
 
-### 🚀 Tecnologías Avanzadas
-- **CSS Grid**: Para el tablero de juego
-- **CSS Custom Properties**: Variables para temas consistentes
-- **Backdrop Filter**: Efectos de desenfoque
-- **CSS Animations**: Animaciones keyframe personalizadas
-- **Google Fonts**: Tipografía moderna (Poppins)
+Tres en raya moderno con interfaz web. Está hecho con **HTML, CSS y JavaScript vanilla**: no usa frameworks, ni dependencias, ni proceso de build. Incluye modo **jugador contra jugador** y modo **jugador contra la IA** con tres niveles de dificultad.
 
-## 📱 Compatibilidad
+El tablero es una cuadrícula de 3 × 3 generada con **CSS Grid**, sobre un fondo con efecto *glassmorphism*, gradientes y animaciones.
 
-- ✅ Chrome 88+
-- ✅ Firefox 94+
-- ✅ Safari 14+
-- ✅ Edge 88+
-- ✅ Móviles y tablets
+### Características
 
-## 🛠️ Instalación
+- **Dos modos de juego**: jugador vs jugador y jugador vs IA.
+- **Tres niveles de IA**: fácil, medio y difícil.
+- **Interfaz glassmorphism** con gradientes y desenfoque (`backdrop-filter`).
+- **Efectos**: confeti al ganar y resaltado de la línea ganadora.
+- **Modal de bienvenida** para elegir modo y dificultad antes de empezar.
+- **Detección de empate** y bloqueo de movimientos inválidos.
+- **Diseño responsive** para móvil, tablet y escritorio.
+- **Sin instalación**: se abre directamente en el navegador.
 
-1. **Clona o descarga** el repositorio:
+### Cómo jugar
+
+**Jugador vs jugador**
+
+1. Elige el modo **PVP** en el modal de bienvenida.
+2. Los jugadores se alternan haciendo clic en las casillas.
+3. **X** siempre empieza.
+4. Gana quien consiga **3 en línea** en horizontal, vertical o diagonal.
+
+**Jugador vs IA**
+
+1. Elige el modo **PVE** y un nivel de dificultad.
+2. Tú siempre juegas como **X** y mueves primero.
+3. La IA responde automáticamente como **O** con una pausa de 800 ms.
+4. El botón de reinicio limpia el tablero y empieza otra partida.
+
+### Niveles de la IA
+
+| Nivel | Comportamiento |
+|---|---|
+| 🟢 Fácil | Movimientos aleatorios entre las casillas libres |
+| 🟡 Medio | Estrategia básica con errores ocasionales |
+| 🔴 Difícil | Estrategia óptima y consistente |
+
+La IA del nivel difícil sigue este orden de prioridad:
+
+1. **Ganar** si hay una jugada ganadora disponible.
+2. **Bloquear** al jugador humano si va a ganar.
+3. Ocupar el **centro** (casilla 4).
+4. Ocupar una **esquina** libre.
+5. Cualquier casilla libre.
+
+### Instalación
+
+No hace falta instalar nada.
+
 ```bash
-git clone https://github.com/tu-usuario/tres-en-raya.git
+git clone https://github.com/alberto2005-coder/3-en-raya.git
+cd 3-en-raya
 ```
 
-2. **Abre el archivo** `index.html` en tu navegador favorito
+Después abre `index.html` en el navegador (doble clic o arrastrarlo a la ventana).
 
-3. **¡Disfruta jugando!** 🎉
+Si prefieres servirlo con un servidor local:
 
-No requiere instalación de dependencias ni servidor web.
-
-## 🎮 Cómo Jugar
-
-### Modo Jugador vs Jugador
-1. Ambos jugadores se alternan haciendo clic en las casillas
-2. **X** siempre comienza primero
-3. Gana quien consiga **3 en línea** (horizontal, vertical o diagonal)
-
-### Modo Jugador vs IA
-1. **Tú siempre juegas como X** (primer turno)
-2. Selecciona tu nivel de dificultad preferido
-3. La IA responde automáticamente como **O**
-4. ¡Intenta vencer a la máquina!
-
-## 🏗️ Estructura del Proyecto
-
-```
-tres-en-raya/
-│
-├── index.html          # Archivo principal del juego
-├── README.md           # Este archivo
-└── tres-en-raya.png    # Icono del juego (opcional)
+```bash
+python -m http.server 8000
 ```
 
-## 🎯 Estrategia de la IA
+y visita <http://localhost:8000>.
 
-### Algoritmo de Decisión
-1. **🥇 Prioridad 1**: Ganar si es posible
-2. **🛡️ Prioridad 2**: Bloquear al jugador humano
-3. **🎯 Prioridad 3**: Tomar el centro (posición estratégica)
-4. **📐 Prioridad 4**: Ocupar esquinas
-5. **🔄 Prioridad 5**: Cualquier posición disponible
+### Personalización
 
-### Niveles de Dificultad
-- **Fácil**: 100% movimientos aleatorios
-- **Medio**: Aplica estrategia con cierta probabilidad de errores
-- **Difícil**: Estrategia óptima consistente
+**Colores y formas**: las variables están en `:root` dentro de `styles.css`.
 
-## 🎨 Personalización
-
-### Variables CSS Personalizables
 ```css
 :root {
-    --primary-color: #667eea;      /* Color principal */
-    --secondary-color: #764ba2;    /* Color secundario */
-    --accent-color: #f093fb;       /* Color de acento */
-    --success-color: #4ecdc4;      /* Color de éxito */
-    --danger-color: #ff6b6b;       /* Color de peligro */
-    --border-radius: 15px;         /* Radio de bordes */
+    --primary-color: #667eea;     /* Color principal */
+    --secondary-color: #764ba2;   /* Color secundario */
+    --accent-color: #f093fb;      /* Color de acento */
+    --success-color: #4ecdc4;     /* Color de éxito */
+    --danger-color: #ff6b6b;      /* Color de peligro */
+    --border-radius: 15px;        /* Radio de bordes */
 }
 ```
 
-### Modificar Dificultad de IA
-Puedes ajustar la lógica de la IA editando las funciones:
-- `getRandomMove()` - Movimientos aleatorios
-- `getMediumMove()` - Estrategia intermedia  
-- `getHardMove()` - Estrategia avanzada
+**Dificultad**: la lógica está en `main.js`, en `getRandomMove()`, `getMediumMove()` y `getHardMove()`. `setDifficulty()` guarda el nivel elegido en la variable `aiDifficulty`.
 
-## 🔧 Funcionalidades Técnicas
+**Tipografía**: se carga **Poppins** desde Google Fonts. Para cambiarla, edita el `<link>` de `index.html`.
 
-- **Estado del Juego**: Gestión completa con JavaScript vanilla
-- **Validación de Movimientos**: Previene movimientos inválidos
-- **Detección de Victoria**: Algoritmo eficiente para todas las combinaciones
-- **Animaciones CSS**: Efectos visuales sin librerías externas
-- **Responsive Grid**: Layout que se adapta a cualquier pantalla
+### Compatibilidad
 
-## 📈 Versiones
+- Chrome 88+
+- Firefox 94+
+- Safari 14+
+- Edge 88+
+- Móviles y tablets
 
-### v2.0 (Actual)
-- ➕ Modo IA con 3 niveles de dificultad
-- ➕ Interfaz completamente rediseñada
-- ➕ Efectos visuales avanzados
-- ➕ Design responsive
+### Estructura del proyecto
 
-### v1.0 (Original)
-- ✅ Modo básico jugador vs jugador
-- ✅ Interfaz simple
-- ✅ Funcionalidad core
+```text
+3-en-raya/
+├── index.html        # Estructura, modal de bienvenida y tablero
+├── main.js           # Estado, turnos, victoria e IA
+├── styles.css        # Glassmorphism, grid y animaciones
+├── tres-en-raya.png  # Icono / favicon
+├── LICENSE
+└── README.md
+```
 
-## 🤝 Contribuir
+### Cómo funciona
 
-¡Las contribuciones son bienvenidas! Si quieres mejorar el juego:
+- `board` es un array de 9 posiciones; `winCombinations` contiene las 8 combinaciones ganadoras.
+- `playerMove()` valida el clic, llama a `makeMove()` y comprueba `checkWin()` y `checkDraw()`.
+- `switchPlayer()` alterna entre `X` y `O` y actualiza el indicador de turno.
+- En modo PVE, tras el turno humano se programa `aiMove()` con `setTimeout(..., 800)`.
+- `checkWin()` recorre `winCombinations` y, si encuentra una línea, la resalta y lanza `createConfetti()`.
+- `resetGame()` deja el array vacío y restaura el turno inicial.
 
-1. **Fork** el proyecto
-2. Crea una **rama** para tu feature (`git checkout -b feature/AmazingFeature`)
-3. **Commit** tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un **Pull Request**
+### Licencia
 
-## 💡 Ideas para Futuras Mejoras
+Este proyecto se distribuye bajo la **licencia MIT**. Consulta [LICENSE](LICENSE).
 
-- 🏆 Sistema de puntuación y estadísticas
-- 🎵 Efectos de sonido
-- 🌙 Modo oscuro/claro
-- 📊 Historial de partidas
-- 🎨 Temas visuales personalizables
-- 🔄 Modo online multijugador
-- 📱 App móvil con PWA
+---
 
-## 📄 Licencia
+## English
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+### Table of contents
 
+- [Overview](#overview)
+- [Features](#features)
+- [How to play](#how-to-play)
+- [AI levels](#ai-levels)
+- [Installation](#installation)
+- [Customization](#customization)
+- [Browser support](#browser-support)
+- [Project structure](#project-structure)
+- [How it works](#how-it-works)
+- [License](#license)
+
+### Overview
+
+A modern tic-tac-toe game with a web interface, built with **plain HTML, CSS and JavaScript**: no frameworks, no dependencies and no build step. It ships a **player vs player** mode and a **player vs AI** mode with three difficulty levels.
+
+The board is a 3 × 3 **CSS Grid** on a *glassmorphism* background with gradients and animations.
+
+### Features
+
+- **Two game modes**: player vs player and player vs AI.
+- **Three AI levels**: easy, medium and hard.
+- **Glassmorphism UI** with gradients and `backdrop-filter` blur.
+- **Effects**: confetti on victory and a highlighted winning line.
+- **Welcome modal** to pick mode and difficulty before playing.
+- **Draw detection** and rejection of invalid moves.
+- **Responsive design** for mobile, tablet and desktop.
+- **No installation**: it runs straight from the browser.
+
+### How to play
+
+**Player vs player**
+
+1. Choose **PVP** in the welcome modal.
+2. Players take turns clicking cells.
+3. **X** always goes first.
+4. The first to get **3 in a row** horizontally, vertically or diagonally wins.
+
+**Player vs AI**
+
+1. Choose **PVE** and a difficulty level.
+2. You always play as **X** and move first.
+3. The AI answers automatically as **O** after an 800 ms delay.
+4. The reset button clears the board and starts a new game.
+
+### AI levels
+
+| Level | Behavior |
+|---|---|
+| 🟢 Easy | Random moves among free cells |
+| 🟡 Medium | Basic strategy with occasional mistakes |
+| 🔴 Hard | Consistently optimal strategy |
+
+The hard AI follows this priority order:
+
+1. **Win** if a winning move exists.
+2. **Block** the human player if they are about to win.
+3. Take the **center** (cell 4).
+4. Take a free **corner**.
+5. Any free cell.
+
+### Installation
+
+Nothing to install.
+
+```bash
+git clone https://github.com/alberto2005-coder/3-en-raya.git
+cd 3-en-raya
+```
+
+Then open `index.html` in your browser (double-click it or drag it into the window).
+
+If you prefer a local server:
+
+```bash
+python -m http.server 8000
+```
+
+and visit <http://localhost:8000>.
+
+### Customization
+
+**Colors and shapes**: the variables live in `:root` inside `styles.css`.
+
+```css
+:root {
+    --primary-color: #667eea;     /* Primary color */
+    --secondary-color: #764ba2;   /* Secondary color */
+    --accent-color: #f093fb;      /* Accent color */
+    --success-color: #4ecdc4;     /* Success color */
+    --danger-color: #ff6b6b;      /* Danger color */
+    --border-radius: 15px;        /* Border radius */
+}
+```
+
+**Difficulty**: the logic lives in `main.js`, in `getRandomMove()`, `getMediumMove()` and `getHardMove()`. `setDifficulty()` stores the chosen level in `aiDifficulty`.
+
+**Typography**: **Poppins** is loaded from Google Fonts. To change it, edit the `<link>` in `index.html`.
+
+### Browser support
+
+- Chrome 88+
+- Firefox 94+
+- Safari 14+
+- Edge 88+
+- Mobile and tablets
+
+### Project structure
+
+```text
+3-en-raya/
+├── index.html        # Markup, welcome modal and board
+├── main.js           # State, turns, win detection and AI
+├── styles.css        # Glassmorphism, grid and animations
+├── tres-en-raya.png  # Icon / favicon
+├── LICENSE
+└── README.md
+```
+
+### How it works
+
+- `board` is a 9-slot array; `winCombinations` holds the 8 winning lines.
+- `playerMove()` validates the click, calls `makeMove()` and checks `checkWin()` and `checkDraw()`.
+- `switchPlayer()` alternates `X` and `O` and updates the turn indicator.
+- In PVE mode, the human move is followed by `aiMove()` scheduled with `setTimeout(..., 800)`.
+- `checkWin()` walks `winCombinations` and, on a match, highlights the line and fires `createConfetti()`.
+- `resetGame()` empties the array and restores the starting turn.
+
+### License
+
+This project is released under the **MIT License**. See [LICENSE](LICENSE).
